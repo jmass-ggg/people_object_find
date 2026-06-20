@@ -1,0 +1,57 @@
+Query image: query/South asia_Female_26_105_National_ID.jpg
+Query detected object: person
+Query YOLO confidence: 81.39%
+Query masked number: None
+Query number type: None
+
+Top results:
+
+Rank 1
+Image: dataset/South asia_Female_26_105_National_ID.jpg
+Detected: person
+Visual Similarity: 100.0%
+Color Similarity: 100.0%
+Final Match: 100.0%
+Number: None
+Number Type: None
+Saved: result/match_1_100.0_percent_South_asia_Female_26_105_National_ID.jpg
+
+Rank 2
+Image: dataset/South asia_Female_26_109_Passport.jpg
+Detected: person
+Visual Similarity: 90.98%
+Color Similarity: 60.19%
+Final Match: 83.28%
+Number: None
+Number Type: None
+Saved: result/match_2_83.28_percent_South_asia_Female_26_109_Passport.jpg
+
+Rank 3
+Image: dataset/South asia_Female_25_99_Phone_outdoor_01.jpg
+Detected: person
+Visual Similarity: 77.09%
+Color Similarity: 60.03%
+Final Match: 72.83%
+Number: None
+Number Type: None
+Saved: result/match_3_72.83_percent_South_asia_Female_25_99_Phone_outdoor_01.jpg
+
+Rank 4
+Image: dataset/Hispanic_Female_18_140_Passport.jpg
+Detected: person
+Visual Similarity: 77.91%
+Color Similarity: 54.42%
+Final Match: 72.04%
+Number: None
+Number Type: None
+Saved: result/match_4_72.04_percent_Hispanic_Female_18_140_Passport.jpg
+
+Rank 5
+Image: dataset/South asia_Female_25_100_Passport.jpg
+Detected: person
+Visual Similarity: 77.94%
+Color Similarity: 54.0%
+Final Match: 71.95%
+Number: None
+Number Type: None
+Saved: result/match_5_71.95_percent_South_asia_Female_25_100_Passport.jpg

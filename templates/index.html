@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lost and Found Visual Search</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .upload-box {
+            padding: 20px;
+            border: 2px dashed #999;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            background: #fafafa;
+        }
+
+        button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            background: #111;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="file"] {
+            margin-bottom: 15px;
+        }
+
+        .error {
+            background: #ffe5e5;
+            border: 1px solid #ff9999;
+            color: #8a0000;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .query {
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            background: #fafafa;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .score {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 5px 0 15px 0;
+        }
+
+        .muted {
+            color: #666;
+            font-size: 13px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h1>AI-Powered Lost and Found Visual Search</h1>
+
+    <p>
+        Upload an object image. The system will search the dataset and show
+        the top 10 visually similar matches.
+    </p>
+
+    <div class="upload-box">
+        <form action="/search" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <br>
+            <button type="submit">Search Similar Images</button>
+        </form>
+    </div>
+
+    {% if error %}
+        <div class="error">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    {% if query %}
+        <div class="query">
+            <h2>Uploaded Query</h2>
+
+            <p>
+                <b>Detected object:</b>
+                {{ query.detected_object }}
+            </p>
+
+            <p>
+                <b>YOLO confidence:</b>
+                {{ query.yolo_confidence }}%
+            </p>
+
+            <img src="{{ query.image_url }}" width="350">
+        </div>
+    {% endif %}
+
+    {% if results %}
+        <h2>Top 10 Similar Matches</h2>
+
+        <div class="grid">
+            {% for item in results %}
+                <div class="card">
+                    <h3>Rank {{ item.rank }}</h3>
+
+                    <p class="score">
+                        {{ item.final_percentage }}%
+                    </p>
+
+                    <img src="{{ item.image_url }}">
+
+                    <p>
+                        <b>Detected:</b>
+                        {{ item.detected_object }}
+                    </p>
+
+                    <p>
+                        <b>Visual similarity:</b>
+                        {{ item.visual_percentage }}%
+                    </p>
+
+                    <p>
+                        <b>Color similarity:</b>
+                        {{ item.color_percentage }}%
+                    </p>
+
+                    <p class="muted">
+                        {{ item.image_path }}
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>
